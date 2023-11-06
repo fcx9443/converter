@@ -1,6 +1,7 @@
 function convertFrom(base) {
     // Hide error message initially
     displayErrorMessage("");
+    clearErrorMessages();
 
     // Get the value from the appropriate input
     let value = document.getElementById(base + "Input").value.trim();
@@ -44,7 +45,7 @@ function convertFrom(base) {
         }
     } catch (e) {
         // If an error occurs, display it and clear fields
-        displayErrorMessage(e.message);
+        displayErrorMessage(e.message, base + '-error');
         clearFields();
         return;
     }
@@ -83,9 +84,21 @@ function clearFieldsExcept(base) {
     if (base !== "decimal") document.getElementById("decimalInput").value = "";
 }
 
-function displayErrorMessage(message) {
-    document.getElementById("error-message").textContent = message;
+function displayErrorMessage(message, elementId) {
+    var errorSpan = document.getElementById(elementId);
+    if (errorSpan) {
+        errorSpan.textContent = message;
+    }
 }
+
+function clearErrorMessages() {
+    // Clear all error messages
+    var errorElements = document.querySelectorAll('.error-message');
+    errorElements.forEach(function(element) {
+        element.textContent = ''; // Clear the error message
+    });
+}
+
 
 function formatNumber(num) {
     // This will drop any insignificant trailing zeroes and decimal point if not needed
@@ -233,3 +246,42 @@ setInputFilter(document.getElementById("hexInput"), function (value) {
 setInputFilter(document.getElementById("octalInput"), function (value) {
     return /^[0-7]*$/.test(value); // Only octal numbers
 });
+
+// Theme toggle
+document.addEventListener('DOMContentLoaded', (event) => {
+  const toggleButton = document.getElementById('theme-toggle');
+  const currentTheme = localStorage.getItem('theme');
+
+  // Function to update the icon based on the theme
+  const updateIcon = () => {
+    const isDarkMode = document.body.classList.contains('dark-theme');
+    if (isDarkMode) {
+      toggleButton.innerHTML = '<span style="color: white;">☀️</span>';
+    } else {
+      toggleButton.textContent = '🌙'; 
+    }
+  };
+
+  // Apply the current theme and update the icon accordingly
+  if (currentTheme === 'dark') {
+    document.body.classList.add('dark-theme');
+  }
+  updateIcon(); // Update the icon on page load
+
+  toggleButton.addEventListener('click', () => {
+    document.body.classList.toggle('dark-theme');
+    updateIcon(); // Update the icon on toggle
+
+    // Save the current preference to localStorage
+    const theme = document.body.classList.contains('dark-theme') ? 'dark' : 'light';
+    localStorage.setItem('theme', theme);
+  });
+});
+
+//Copy to clipboard function
+function copyToClipboard(elementId) {
+    var copyText = document.getElementById(elementId);
+    copyText.select();
+    document.execCommand("copy");
+    alert("Copied: " + copyText.value); // Alert or indicate copy success
+}

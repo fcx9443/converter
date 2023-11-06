@@ -7,25 +7,42 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    
+    <!-- Page Title and Description -->
+    <header class="page-header">
+        <h1 class="page-title">Welcome to the Multi-purpose Converter</h1>
+        <p class="page-description">Use this tool to convert between different units like binary, decimal, time units, and more. Just enter your value in any field, and the equivalent values in other units will be calculated automatically.</p>
+        
+        <button id="theme-toggle" aria-label="Toggle theme">🌙</button>
+    </header>
+    
+    <div class="converters-wrapper">
     <!-- Number Base Converter -->
     <div class="converter-container">
-        <h1>Number Base Converter</h1>
+        <h2>Number Base Converter</h2>
         <div class="input-group">
             <label for="binaryInput">Binary:</label>
-            <input type="text" id="binaryInput" placeholder="Enter binary" oninput="convertFrom('binary')">
+            <input type="text" id="binaryInput" placeholder="Enter binary - eg 10100011001101" oninput="convertFrom('binary')">
+            <button onclick="copyToClipboard('binaryInput')" class="copy-btn">Copy</button>
+            <small class="error-message" id="binary-error"></small>
         </div>
         <div class="input-group">
             <label for="hexInput">Hexadecimal:</label>
-            <input type="text" id="hexInput" placeholder="Enter hexadecimal" oninput="convertFrom('hex')">
+            <input type="text" id="hexInput" placeholder="Enter hexadecimal - eg 28cd" oninput="convertFrom('hex')">
+            <button onclick="copyToClipboard('hexInput')" class="copy-btn">Copy</button>
+            <small class="error-message" id="hex-error"></small>
         </div>
         <div class="input-group">
             <label for="octalInput">Octal:</label>
-            <input type="text" id="octalInput" placeholder="Enter octal" oninput="convertFrom('octal')">
+            <input type="text" id="octalInput" placeholder="Enter octal - eg 24315" oninput="convertFrom('octal')">
+            <button onclick="copyToClipboard('octalInput')" class="copy-btn">Copy</button>
+            <small class="error-message" id="octal-error"></small>
         </div>
         <div class="input-group">
             <label for="decimalInput">Decimal:</label>
-            <input type="text" id="decimalInput" placeholder="Enter decimal" oninput="convertFrom('decimal')">
-            <small id="error-message"></small>
+            <input type="text" id="decimalInput" placeholder="Enter decimal - eg 10445" oninput="convertFrom('decimal')">
+            <button onclick="copyToClipboard('decimalInput')" class="copy-btn">Copy</button>
+            <small class="error-message" id="decimal-error"></small>
         </div>
     </div>
 
@@ -34,15 +51,21 @@
     <h2>Percentage Calculator</h2>
     <div class="input-group">
         <label for="partValue">Part Value:</label>
-        <input type="number" id="partValue" placeholder="Enter part value" oninput="calculatePercentageFromPart()">
+        <input type="number" id="partValue" placeholder="Enter part value - eg 50" oninput="calculatePercentageFromPart()">
+        <button onclick="copyToClipboard('partValue')" class="copy-btn">Copy</button>
+        <small class="error-message" id="part-error"></small>
     </div>
     <div class="input-group">
         <label for="percentOfValue">Percentage of:</label>
-        <input type="number" id="percentOfValue" placeholder="Enter total value" oninput="calculateTotalFromPercentage()">
+        <input type="number" id="percentOfValue" placeholder="Enter total value - eg 100" oninput="calculateTotalFromPercentage()">
+        <button onclick="copyToClipboard('percentOfValue')" class="copy-btn">Copy</button>
+        <small class="error-message" id="percent-error"></small>
     </div>
     <div class="input-group">
         <label for="percentResult">Percentage:</label>
-        <input type="number" id="percentResult" placeholder="Enter percentage" oninput="calculatePartFromPercentage()">
+        <input type="number" id="percentResult" placeholder="Enter percentage  - eg 50" oninput="calculatePartFromPercentage()">
+        <button onclick="copyToClipboard('percentResult')" class="copy-btn">Copy</button>
+            <small class="error-message" id="percent-error"></small>
     </div>
 </div>
 
@@ -51,15 +74,21 @@
     <h2>Time Converter</h2>
     <div class="input-group">
         <label for="hours">Hours:</label>
-        <input type="number" id="hours" placeholder="Enter hours" oninput="convertTime('hours')">
+        <input type="number" id="hours" placeholder="Enter hours - eg 1" oninput="convertTime('hours')">
+        <button onclick="copyToClipboard('hours')" class="copy-btn">Copy</button>
+        <small class="error-message" id="hours-error"></small>
     </div>
     <div class="input-group">
         <label for="minutes">Minutes:</label>
-        <input type="number" id="minutes" placeholder="Enter minutes" oninput="convertTime('minutes')">
+        <input type="number" id="minutes" placeholder="Enter minutes - eg 60" oninput="convertTime('minutes')">
+        <button onclick="copyToClipboard('minutes')" class="copy-btn">Copy</button>
+        <small class="error-message" id="minutes-error"></small>
     </div>
     <div class="input-group">
         <label for="seconds">Seconds:</label>
-        <input type="number" id="seconds" placeholder="Enter seconds" oninput="convertTime('seconds')">
+        <input type="number" id="seconds" placeholder="Enter seconds - eg 3600" oninput="convertTime('seconds')">
+        <button onclick="copyToClipboard('seconds')" class="copy-btn">Copy</button>
+        <small class="error-message" id="seconds-error"></small>
     </div>
 </div>
 
@@ -68,14 +97,29 @@
     <h2>ASCII/Unicode Converter</h2>
     <div class="input-group">
         <label for="charInput">Character:</label>
-        <input type="text" id="charInput" placeholder="Enter character" oninput="convertCharToCode()">
+        <input type="text" id="charInput" placeholder="Enter character - eg T" oninput="convertCharToCode()">
+        <button onclick="copyToClipboard('charInput')" class="copy-btn">Copy</button>
+        <small class="error-message" id="char-error"></small>
     </div>
     <div class="input-group">
-        <label for="codeInput">ASCII/Unicode Number:</label>
-        <input type="number" id="codeInput" placeholder="Enter ASCII/Unicode number" oninput="convertCodeToChar()">
+        <label for="codeInput">Number:</label>
+        <input type="number" id="codeInput" placeholder="Enter ASCII/Unicode number - eg 84" oninput="convertCodeToChar()">
+        <button onclick="copyToClipboard('codeInput')" class="copy-btn">Copy</button>
+        <small class="error-message" id="code-error"></small>
     </div>
 </div>
+    </div>
 
+    <!-- Footer -->
+    <footer class="page-footer">
+        <p style="color:white;">&copy; 
+            <script>
+			  var CurrentYear = new Date().getFullYear();
+			  document.write(CurrentYear);
+			</script> <a style="color:white;text-decoration: none;" href="https://brears.xyz" target="_blank" rel="noopener ">Thomas Brears</a>. All rights reserved.
+             
+            <a style="color:white;" href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub Repo</a></p>
+    </footer>
 
 <script src="script.js"></script>
 </body>

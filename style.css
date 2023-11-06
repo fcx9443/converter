@@ -1,27 +1,106 @@
+:root {
+  --background-color: #f4f4f4; /* Light theme background */
+  --text-color: #333; /* Light theme text */
+  --container-bg-color: #fff; /* Light theme container background */
+  --footer-bg-color: #333; /* Light theme footer background */
+  --input-bg-color: #fff; /* Light theme input background */
+  --input-border-color: #ddd; /* Light theme input border */
+}
+
+.dark-theme {
+  --background-color: #121212; /* Dark theme background */
+  --text-color: #ffffff; /* Dark theme text */
+  --container-bg-color: #222222; /* Dark theme container background */
+  --footer-bg-color: #1a1a1a; /* Dark theme footer background */
+  --input-bg-color: #333333; /* Dark theme input background */
+  --input-border-color: #333333; /* Dark theme input border */
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    padding: 20px; /* add padding around the content */
-    background-color: #f4f4f4;
+    background-color: var(--background-color); 
+    color: var(--text-color);
     display: flex;
-    justify-content: center;
-    align-items: flex-start; /* align items to the start */
+    flex-direction: column; 
+    align-items: center; 
     min-height: 100vh;
+    justify-content: flex-start;
+}
+
+h1, p, label {
+    color: var(--text-color);
+}
+
+#theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5em; /* Icon size */
+  position: fixed; 
+  right: 1em; 
+  top: 1em; 
+  z-index: 1000; 
+}
+
+#theme-toggle:hover {
+  opacity: 0.8;
+}
+
+
+.page-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.page-title {
+    margin-bottom: 0.5em; 
+}
+
+.page-description {
+    margin-bottom: 1em;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.page-footer {
+    text-align: center;
+    width: 100%; 
+    padding: 20px 0; 
+    background-color: var(--footer-bg-color);
+    color: var(--text-color);
+    position: relative;
+    bottom: 0; 
+    left: 0; 
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.converters-wrapper {
+    width: 100%; 
+    max-width: 1200px;
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 20px; 
+    justify-content: space-evenly;
+    padding: 0; 
+    box-sizing: border-box;
 }
 
 .converter-container {
     text-align: center;
-    background: #fff;
+    background: var(--container-bg-color);
     padding: 20px;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    width: 100%;
-    max-width: 400px; /* Keep the max-width to limit the box size */
-    margin-bottom: 20px; /* Add space between each converter box */
-}
-
-.converter-box {
-    margin-top: 20px; /* Add space only at the top to separate from previous content if any */
+    box-shadow: 0 0 10px rgba(0,0,0,0.3); /* Adjust shadow for dark theme */
+    flex: 1;
+    min-width: calc(50% - 20px); 
+    max-width: calc(50% - 20px); 
+    box-sizing: border-box;
+    margin-bottom: 20px;
 }
 
 .result-container {
@@ -29,39 +108,90 @@ body {
 }
 
 input[type="number"], input[type="text"] {
-    width: calc(100% - 20px); /* Adjust for padding and borders */
+    flex: 1;
+    width: calc(100% - 20px);
     padding: 10px;
     margin-top: 10px;
-    border: 1px solid #ddd;
+    background-color: var(--input-bg-color);
+    border: 1px solid var(--input-border-color);
     border-radius: 4px;
-    box-sizing: border-box; /* Include padding and borders in width calculation */
-}
-
-h1, p, label {
-    color: #333; /* Adjusted for consistent color styling */
+    color: var(--text-color);
+    box-sizing: border-box;
 }
 
 .input-group {
+    display: flex; 
+    justify-content: flex-start;
+    align-items: center; 
     margin: 10px 0;
 }
 
 label {
+    width: 5em;
     display: block;
+    text-align: right;
     margin-bottom: 5px;
+    margin-right: 10px;
+    padding-right: 10px;
+    white-space: nowrap;
+}
+
+.copy-btn {
+    background: var(--input-bg-color);
+    color: var(--text-color); 
+    border: 1px solid var(--input-border-color); 
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 0.5em; 
+}
+
+.copy-btn:hover {
+    background-color: opacity: 0.8;
 }
 
 /* Responsive design for mobile devices */
 @media (max-width: 768px) {
     .converter-container {
-        margin-top: 0; /* Reset margin-top for the container */
-        margin-bottom: 10px; /* Reduce bottom margin for each box */
+        min-width: 100%;
+        max-width: 100%;
     }
-
-    input[type="number"], input[type="text"] {
-        width: 100%; /* Inputs take full width on small screens */
+    .page-description {
+        padding: 0 10px;
     }
+    
+    @media (max-width: 768px) {
+  .input-group {
+    flex-direction: column;
+    align-items: stretch; 
+  }
 
+  .input-group label {
+    width: auto;
+    text-align: left;
+    margin-bottom: 5px;
+    margin-right: 0; 
+    padding-right: 0;
+  }
+
+  /* Ensure input takes full width of container on smaller screens */
+  input[type="number"], input[type="text"] {
+    width: 100%;
+    margin-top: 5px;
+  }
+}
+
+}
+
+@media (max-width: 480px) {
     body {
-        padding: 10px; /* Less padding on smaller screens */
+        padding: 10px;
+    }
+    .converters-wrapper {
+        padding: 0;
+    }
+    .converter-container {
+        padding: 10px;
     }
 }
