@@ -26,22 +26,32 @@ document.getElementById("scroll-to-top").addEventListener("click", function() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
+// Function to close the mobile menu
+function closeMenu() {
+  var navLinks = document.querySelector('.nav-links');
+  if (navLinks.classList.contains('active')) { // Check if the menu is open
+    navLinks.classList.remove('active'); // Close the menu
+  }
+}
+
 // Function to toggle the menu on mobile
 function toggleMenu() {
   var navLinks = document.querySelector('.nav-links');
   navLinks.classList.toggle('active');
 }
 
-// Toggle dropdown menu for touch devices
-function toggleDropdown(e) {
-  e.preventDefault(); // Prevent link from navigating to #projects
-  var dropdownContent = e.target.nextElementSibling; // Get the next element, which should be the dropdown content
-  if (dropdownContent.style.display === "block") {
-    dropdownContent.style.display = "none";
-  } else {
-    dropdownContent.style.display = "block";
-  }
+function toggleMenu() {
+  var navLinks = document.querySelector('.nav-links');
+  var brandName = document.querySelector('.brand-name');
+  navLinks.classList.toggle('active');
+  brandName.classList.toggle('adjusted'); 
 }
+
+// Add click event listeners to all nav links for mobile menu close
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', closeMenu); // Close menu when a link is clicked
+});
+
 
 // Theme toggle
 document.addEventListener('DOMContentLoaded', (event) => {
