@@ -6,21 +6,49 @@
 <meta name="description" content="Efficiently convert between binary, decimal, hex, and ASCII codes. Use our free and easy-to-use multi-purpose converter tool for all your unit conversions.">
 
 <title>Multi-purpose Converter | Convert Binary, Decimal, Time, ASCII Online</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+<!-- Scroll to Top Button -->
+<button id="scroll-to-top" aria-label="Scroll to top" style="display: none;">↑ Top</button>
+
+<!-- Navigation Bar -->
+<nav id="navbar">
+    <div class="nav-container">
+        <span class="brand-name">Conversion Tool</span>
+        <div class="menu-icon" onclick="toggleMenu()">
+            <i class="fa fa-bars"></i>
+        </div>
+        <div class="nav-links">
+            <a href="#number">Number Base</a>
+            <a href="#weight">Weight</a>
+            <a href="#percentage">Percentage</a>
+            <a href="#time">Time</a>
+            <a href="#ASCII">ASCII</a>
+            <a href="#temperature">Temperature</a>
+            <a href="#length">Length</a>
+            <a href="#area">Area</a>
+            <a href="#volume">Volume</a>
+            <a href="#speed">Speed</a>
+            <a href="#angle">Angle</a>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">🌙</button>
+        </div>
+    </div>
+</nav>
+
     
     <!-- Page Title and Description -->
     <header class="page-header">
         <h1 class="page-title">Welcome to the Multi-purpose Converter</h1>
         <p class="page-description">Use this tool to convert between different units like binary, decimal, time units, and more. Just enter your value in any field, and the equivalent values in other units will be calculated automatically.</p>
-        
-        <button id="theme-toggle" aria-label="Toggle theme">🌙</button>
     </header>
     
     <div class="converters-wrapper">
+        
     <!-- Number Base Converter -->
-    <div class="converter-container">
+    <div class="converter-container" id="number">
         <h2>Number Base Converter</h2>
         <div class="input-group">
             <label for="binaryInput">Binary:</label>
@@ -47,9 +75,35 @@
             <small class="error-message" id="decimal-error"></small>
         </div>
     </div>
+        
+        
+<!-- Weight Converter Section -->
+<div class="converter-container" id="weight">
+    <h2>Weight Converter</h2>
+    <div class="input-group">
+        <label for="kilograms">Kilograms:</label>
+        <input type="number" id="kilograms" placeholder="Enter kilograms" oninput="convertWeight('kg')">
+        <button onclick="copyToClipboard('kilograms')" class="copy-btn">Copy</button>
+    </div>
+    <div class="input-group">
+        <label for="pounds">Pounds:</label>
+        <input type="number" id="pounds" placeholder="Enter pounds" oninput="convertWeight('lbs')">
+        <button onclick="copyToClipboard('pounds')" class="copy-btn">Copy</button>
+    </div>
+    <div class="input-group">
+        <label for="grams">Grams:</label>
+        <input type="number" id="grams" placeholder="Enter grams" oninput="convertWeight('g')">
+        <button onclick="copyToClipboard('grams')" class="copy-btn">Copy</button>
+    </div>
+    <div class="input-group">
+        <label for="ounces">Ounces:</label>
+        <input type="number" id="ounces" placeholder="Enter ounces" oninput="convertWeight('oz')">
+        <button onclick="copyToClipboard('ounces')" class="copy-btn">Copy</button>
+    </div>
+</div>
 
     <!-- Percentage Calculator Section -->
-<div class="converter-container">
+<div class="converter-container" id="percentage">
     <h2>Percentage Calculator</h2>
     <div class="input-group">
         <label for="partValue">Part Value:</label>
@@ -72,7 +126,7 @@
 </div>
 
 <!-- Time Converter Section -->
-<div class="converter-container">
+<div class="converter-container" id="time">
     <h2>Time Converter</h2>
     <div class="input-group">
         <label for="hours">Hours:</label>
@@ -95,7 +149,7 @@
 </div>
 
 <!-- ASCII/Unicode Converter Section -->
-<div class="converter-container">
+<div class="converter-container" id="ASCII">
     <h2>ASCII/Unicode Converter</h2>
     <div class="input-group">
         <label for="charInput">Character:</label>
@@ -110,7 +164,178 @@
         <small class="error-message" id="code-error"></small>
     </div>
 </div>
+        
+<!-- Temperature Converter Section -->
+<div class="converter-container" id="temperature">
+    <h2>Temperature Converter</h2>
+    <div class="input-group">
+        <label for="celsiusInput">Celsius:</label>
+        <input type="number" id="celsiusInput" placeholder="Enter Celsius" oninput="convertTemperature('C')">
+        <button onclick="copyToClipboard('celsiusInput')" class="copy-btn">Copy</button>
     </div>
+    <div class="input-group">
+        <label for="fahrenheitInput">Fahrenheit:</label>
+        <input type="number" id="fahrenheitInput" placeholder="Enter Fahrenheit" oninput="convertTemperature('F')">
+        <button onclick="copyToClipboard('fahrenheitInput')" class="copy-btn">Copy</button>
+    </div>
+</div>
+
+<!-- Length Converter Section -->
+<div class="converter-container" id="length">
+    <h2>Length Converter</h2>
+    <div class="input-group">
+        <label for="meters">Meters:</label>
+        <input type="number" id="meters" placeholder="Enter meters" oninput="convertLength('m')">
+        <button onclick="copyToClipboard('meters')" class="copy-btn">Copy</button>
+    </div>
+    <div class="input-group">
+        <label for="feet">Feet:</label>
+        <input type="number" id="feet" placeholder="Enter feet" oninput="convertLength('ft')">
+        <button onclick="copyToClipboard('feet')" class="copy-btn">Copy</button>
+    </div>
+    <div class="input-group">
+        <label for="centimeters">Centimeters:</label>
+        <input type="number" id="centimeters" placeholder="Enter centimeters" oninput="convertLength('cm')">
+        <button onclick="copyToClipboard('centimeters')" class="copy-btn">Copy</button>
+    </div>
+    <div class="input-group">
+        <label for="inches">Inches:</label>
+        <input type="number" id="inches" placeholder="Enter inches" oninput="convertLength('in')">
+        <button onclick="copyToClipboard('inches')" class="copy-btn">Copy</button>
+    </div>
+    <div class="input-group">
+        <label for="kilometers">Kilometers:</label>
+        <input type="number" id="kilometers" placeholder="Enter kilometers" oninput="convertLength('km')">
+        <button onclick="copyToClipboard('kilometers')" class="copy-btn">Copy</button>
+    </div>
+    <div class="input-group">
+        <label for="miles">Miles:</label>
+        <input type="number" id="miles" placeholder="Enter miles" oninput="convertLength('mi')">
+        <button onclick="copyToClipboard('miles')" class="copy-btn">Copy</button>
+    </div>
+</div>
+        
+
+<!-- Area Converter Section -->
+<div class="converter-container" id="area">
+  <h2>Area Converter</h2>
+  <div class="input-group">
+    <label for="squareMeters">Square Meters:</label>
+    <input type="number" id="squareMeters" placeholder="Enter square meters" oninput="convertArea('m2')">
+    <button onclick="copyToClipboard('squareMeters')" class="copy-btn">Copy</button>
+  </div>
+  <div class="input-group">
+    <label for="squareKilometers">Square Kilometers:</label>
+    <input type="number" id="squareKilometers" placeholder="Enter square kilometers" oninput="convertArea('km2')">
+    <button onclick="copyToClipboard('squareKilometers')" class="copy-btn">Copy</button>
+  </div>
+  <div class="input-group">
+    <label for="squareFeet">Square Feet:</label>
+    <input type="number" id="squareFeet" placeholder="Enter square feet" oninput="convertArea('ft2')">
+    <button onclick="copyToClipboard('squareFeet')" class="copy-btn">Copy</button>
+  </div>
+  <div class="input-group">
+    <label for="squareYards">Square Yards:</label>
+    <input type="number" id="squareYards" placeholder="Enter square yards" oninput="convertArea('yd2')">
+    <button onclick="copyToClipboard('squareYards')" class="copy-btn">Copy</button>
+  </div>
+  <div class="input-group">
+    <label for="acres">Acres:</label>
+    <input type="number" id="acres" placeholder="Enter acres" oninput="convertArea('acres')">
+    <button onclick="copyToClipboard('acres')" class="copy-btn">Copy</button>
+  </div>
+  <div class="input-group">
+    <label for="hectares">Hectares:</label>
+    <input type="number" id="hectares" placeholder="Enter hectares" oninput="convertArea('hectares')">
+    <button onclick="copyToClipboard('hectares')" class="copy-btn">Copy</button>
+  </div>
+</div>
+
+
+<!-- Volume Converter Section -->
+<div class="converter-container" id="volume">
+  <h2>Volume Converter</h2>
+  <div class="input-group">
+    <label for="liters">Liters:</label>
+    <input type="number" id="liters" placeholder="Enter liters" oninput="convertVolume('L')">
+    <button onclick="copyToClipboard('liters')" class="copy-btn">Copy</button>
+  </div>
+  <div class="input-group">
+    <label for="milliliters">Milliliters:</label>
+    <input type="number" id="milliliters" placeholder="Enter milliliters" oninput="convertVolume('mL')">
+    <button onclick="copyToClipboard('milliliters')" class="copy-btn">Copy</button>
+  </div>
+  <div class="input-group">
+    <label for="cups">Cups:</label>
+    <input type="number" id="cups" placeholder="Enter cups" oninput="convertVolume('cups')">
+    <button onclick="copyToClipboard('cups')" class="copy-btn">Copy</button>
+  </div>
+  <div class="input-group">
+    <label for="pints">Pints:</label>
+    <input type="number" id="pints" placeholder="Enter pints" oninput="convertVolume('pints')">
+    <button onclick="copyToClipboard('pints')" class="copy-btn">Copy</button>
+  </div>
+  <div class="input-group">
+    <label for="quarts">Quarts:</label>
+    <input type="number" id="quarts" placeholder="Enter quarts" oninput="convertVolume('quarts')">
+    <button onclick="copyToClipboard('quarts')" class="copy-btn">Copy</button>
+  </div>
+  <div class="input-group">
+    <label for="gallons">Gallons:</label>
+    <input type="number" id="gallons" placeholder="Enter gallons" oninput="convertVolume('gallons')">
+    <button onclick="copyToClipboard('gallons')" class="copy-btn">Copy</button>
+  </div>
+</div>
+
+<!-- Speed Converter Section -->
+<div class="converter-container" id="speed">
+  <h2>Speed Converter</h2>
+  <div class="input-group">
+    <label for="kmph">km/h:</label>
+    <input type="number" id="kmph" placeholder="Enter speed in Kilometers per Hour" oninput="convertSpeed('kmph')">
+    <button onclick="copyToClipboard('kmph')" class="copy-btn">Copy</button>
+  </div>
+  <div class="input-group">
+    <label for="mph">mph:</label>
+    <input type="number" id="mph" placeholder="Enter speed in Miles per Hour" oninput="convertSpeed('mph')">
+    <button onclick="copyToClipboard('mph')" class="copy-btn">Copy</button>
+  </div>
+  <div class="input-group">
+    <label for="mps">m/s:</label>
+    <input type="number" id="mps" placeholder="Enter speed in Meters per Second " oninput="convertSpeed('mps')">
+    <button onclick="copyToClipboard('mps')" class="copy-btn">Copy</button>
+  </div>
+  <div class="input-group">
+    <label for="fps">ft/s:</label>
+    <input type="number" id="fps" placeholder="Enter speed in Feet per Second " oninput="convertSpeed('fps')">
+    <button onclick="copyToClipboard('fps')" class="copy-btn">Copy</button>
+  </div>
+</div>
+
+<!-- Angle Converter Section -->
+<div class="converter-container" id="angle">
+  <h2>Angle Converter</h2>
+  <div class="input-group">
+    <label for="degrees">Degrees:</label>
+    <input type="number" id="degrees" placeholder="Enter degrees" oninput="convertAngle('degrees')">
+    <button onclick="copyToClipboard('degrees')" class="copy-btn">Copy</button>
+  </div>
+  <div class="input-group">
+    <label for="radians">Radians:</label>
+    <input type="number" id="radians" placeholder="Enter radians" oninput="convertAngle('radians')">
+    <button onclick="copyToClipboard('radians')" class="copy-btn">Copy</button>
+  </div>
+  <div class="input-group">
+    <label for="gradians">Gradians:</label>
+    <input type="number" id="gradians" placeholder="Enter gradians" oninput="convertAngle('gradians')">
+    <button onclick="copyToClipboard('gradians')" class="copy-btn">Copy</button>
+  </div>
+</div>
+
+
+        
+    
+</div>
 
     <!-- Footer -->
     <footer class="page-footer">
